@@ -1,30 +1,23 @@
 package org.hdiv.samples.mvc.config;
 
 import org.hdiv.web.multipart.HdivCommonsMultipartResolver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.Validator;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @ComponentScan({ "org.hdiv.samples.mvc.controllers" })
 @EnableWebMvc
-public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
-
-	@Autowired
-	@Qualifier("hdivEditableValidator")
-	private Validator hdivEditableValidator;
+public class SpringWebMvcConfig implements WebMvcConfigurer {
 
 	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
+	public void addViewControllers(final ViewControllerRegistry registry) {
 		registry.addRedirectViewController("/", "/welcome.html");
 		registry.addViewController("/welcome.html").setViewName("welcome");
 		registry.addViewController("/attacks/attacks.html").setViewName("/attacks/attacks");
@@ -34,7 +27,7 @@ public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
@@ -50,11 +43,6 @@ public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 	public MultipartResolver multipartResolver() {
 		HdivCommonsMultipartResolver resolver = new HdivCommonsMultipartResolver();
 		return resolver;
-	}
-
-	@Override
-	public Validator getValidator() {
-		return hdivEditableValidator;
 	}
 
 }
