@@ -44,6 +44,7 @@ public class HdivSecurityConfig extends HdivWebSecurityConfigurerAdapter {
 	public void configureEditableValidation(ValidationConfigurer validationConfigurer) {
 
 		validationConfigurer.addValidation("/secure/.*");
+		validationConfigurer.addValidation("/attacks/.*").disableDefaults();
 		validationConfigurer.addValidation("/safetext/.*").rules("safeText").disableDefaults();
 	}
 }
