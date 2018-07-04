@@ -11,9 +11,11 @@ Clone this repo and build jar file (you'll need Git and Maven installed):
     mvn package
     
 Run application with maven:
+
     mvn spring-boot:run
 
 Or run application packaged as a jar:
+
     java -jar target/hdiv-spring-mvc-showcase-jc.jar
 
 Open [http://localhost:8080](http://localhost:8080) in your favorite browser.
