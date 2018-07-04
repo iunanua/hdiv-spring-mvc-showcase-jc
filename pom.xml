@@ -14,10 +14,6 @@
 	<name>HDIV-Spring-Mvc-Showcase</name>
 
 
-	<properties>
-		<org.hdiv-version>3.4.0</org.hdiv-version>
-	</properties>
-
 	<build>
 		<finalName>hdiv-spring-mvc-showcase-jc</finalName>
 		<plugins>
